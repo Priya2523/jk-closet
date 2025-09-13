@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion Closet Circle</title>
+    <title>JK Closet Circle</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,13 +14,13 @@
         }
         
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
             color: #333;
             min-height: 100vh;
-            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         
         .app-container {
@@ -29,14 +29,14 @@
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             height: 90vh;
             display: flex;
             flex-direction: column;
         }
         
         .header {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
             padding: 20px;
             text-align: center;
@@ -47,17 +47,15 @@
             font-size: 24px;
             font-weight: 700;
             margin-bottom: 5px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
         
         .search-bar {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             padding: 10px 15px;
             margin-top: 15px;
             display: flex;
             align-items: center;
-            backdrop-filter: blur(5px);
         }
         
         .search-bar input {
@@ -67,7 +65,6 @@
             width: 100%;
             padding: 5px;
             outline: none;
-            font-weight: 500;
         }
         
         .search-bar input::placeholder {
@@ -96,22 +93,19 @@
             margin-right: 10px;
             white-space: nowrap;
             cursor: pointer;
-            background: #f8f9fa;
+            background: #f5f7fa;
             transition: all 0.3s ease;
-            font-weight: 500;
         }
         
         .category.active {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
-            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
         }
         
         .content {
             flex: 1;
             overflow-y: auto;
             padding: 20px;
-            background: #f8f9fa;
         }
         
         .section-title {
@@ -119,13 +113,6 @@
             font-weight: 600;
             margin-bottom: 15px;
             color: #2d3436;
-            display: flex;
-            align-items: center;
-        }
-        
-        .section-title i {
-            margin-right: 10px;
-            color: #ff6b6b;
         }
         
         .items-grid {
@@ -139,48 +126,52 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
         }
         
         .item-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .item-image-container {
+            width: 100%;
+            height: 150px;
+            background-color: #f0f4ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
         }
         
         .item-image {
             width: 100%;
-            height: 150px;
+            height: 100%;
             object-fit: cover;
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ff6b6b;
+            display: none;
+        }
+        
+        .item-placeholder {
+            color: #6a11cb;
             font-size: 12px;
             text-align: center;
             padding: 10px;
         }
         
         .item-info {
-            padding: 12px;
+            padding: 10px;
         }
         
         .item-name {
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 5px;
-            color: #2d3436;
         }
         
         .item-category {
             font-size: 12px;
             color: #636e72;
-            background: #f8f9fa;
-            padding: 3px 8px;
-            border-radius: 10px;
-            display: inline-block;
         }
         
         .navigation {
@@ -197,12 +188,10 @@
             align-items: center;
             color: #636e72;
             text-decoration: none;
-            transition: all 0.3s ease;
         }
         
         .nav-item.active {
-            color: #ff6b6b;
-            transform: translateY(-5px);
+            color: #6a11cb;
         }
         
         .nav-icon {
@@ -212,7 +201,6 @@
         
         .nav-text {
             font-size: 12px;
-            font-weight: 500;
         }
         
         .upload-btn {
@@ -221,21 +209,16 @@
             right: 30px;
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
             font-size: 24px;
-            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 4px 20px rgba(106, 17, 203, 0.3);
             cursor: pointer;
             z-index: 100;
-            transition: transform 0.3s ease;
-        }
-        
-        .upload-btn:hover {
-            transform: scale(1.1);
         }
         
         .upload-form {
@@ -245,8 +228,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: white;
-            padding: 25px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 15px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             width: 90%;
@@ -257,68 +240,46 @@
             text-align: center;
             margin-bottom: 20px;
             color: #2d3436;
-            font-weight: 600;
-            font-size: 22px;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 500;
-            color: #2d3436;
         }
         
-        .form-group input, .form-group select, .form-group textarea {
+        .form-group input, .form-group select {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: #ff6b6b;
-            outline: none;
+            border-radius: 8px;
         }
         
         .form-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 25px;
+            margin-top: 20px;
         }
         
         .form-btn {
-            padding: 12px 25px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
         }
         
         .submit-btn {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-        
-        .submit-btn:hover {
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-            transform: translateY(-2px);
         }
         
         .cancel-btn {
-            background: #f8f9fa;
+            background: #f5f7fa;
             color: #636e72;
-        }
-        
-        .cancel-btn:hover {
-            background: #e9ecef;
         }
         
         .overlay {
@@ -334,15 +295,14 @@
 
         .image-preview {
             width: 100%;
-            height: 200px;
-            border: 2px dashed #ff6b6b;
-            border-radius: 12px;
+            height: 150px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
             margin-top: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background: #f8f9fa;
         }
 
         .image-preview img {
@@ -352,51 +312,16 @@
         }
 
         .no-image-text {
-            color: #adb5bd;
+            color: #999;
             text-align: center;
             padding: 20px;
-        }
-        
-        .camera-btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: #4cc9f0;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            margin-top: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            text-align: center;
-            transition: background 0.3s ease;
-        }
-        
-        .camera-btn:hover {
-            background: #3ba0c7;
-        }
-        
-        .favorite-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ff6b6b;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="app-container">
         <div class="header">
-            <h1>Fashion Closet Circle</h1>
+            <h1>JK-Closet-Circle</h1>
             <div class="search-bar">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search your wardrobe...">
@@ -408,19 +333,16 @@
             <div class="category">Tops</div>
             <div class="category">Bottoms</div>
             <div class="category">Jackets</div>
-            <div class="category">Dresses</div>
+            <div class="category">Shoes</div>
             <div class="category">Accessories</div>
         </div>
         
         <div class="content">
-            <h2 class="section-title"><i class="fas fa-tshirt"></i> My Wardrobe</h2>
+            <h2 class="section-title">My Wardrobe</h2>
             <div class="items-grid">
                 <div class="item-card">
-                    <div class="item-image">
-                        <div>Blue Denim Jacket<br>Image Preview</div>
-                    </div>
-                    <div class="favorite-btn">
-                        <i class="fas fa-heart"></i>
+                    <div class="item-image-container">
+                        <div class="item-placeholder">Blue Denim Jacket<br>Image Preview</div>
                     </div>
                     <div class="item-info">
                         <div class="item-name">Blue Denim Jacket</div>
@@ -429,11 +351,8 @@
                 </div>
                 
                 <div class="item-card">
-                    <div class="item-image">
-                        <div>White Cotton T-shirt<br>Image Preview</div>
-                    </div>
-                    <div class="favorite-btn">
-                        <i class="far fa-heart"></i>
+                    <div class="item-image-container">
+                        <div class="item-placeholder">White Cotton T-shirt<br>Image Preview</div>
                     </div>
                     <div class="item-info">
                         <div class="item-name">White Cotton T-shirt</div>
@@ -442,11 +361,8 @@
                 </div>
                 
                 <div class="item-card">
-                    <div class="item-image">
-                        <div>Black Formal Pants<br>Image Preview</div>
-                    </div>
-                    <div class="favorite-btn">
-                        <i class="far fa-heart"></i>
+                    <div class="item-image-container">
+                        <div class="item-placeholder">Black Formal Pants<br>Image Preview</div>
                     </div>
                     <div class="item-info">
                         <div class="item-name">Black Formal Pants</div>
@@ -455,11 +371,8 @@
                 </div>
                 
                 <div class="item-card">
-                    <div class="item-image">
-                        <div>Pink Summer Dress<br>Image Preview</div>
-                    </div>
-                    <div class="favorite-btn">
-                        <i class="fas fa-heart"></i>
+                    <div class="item-image-container">
+                        <div class="item-placeholder">Pink Summer Dress<br>Image Preview</div>
                     </div>
                     <div class="item-info">
                         <div class="item-name">Pink Summer Dress</div>
@@ -468,11 +381,11 @@
                 </div>
             </div>
             
-            <h2 class="section-title"><i class="fas fa-star"></i> Outfit Suggestions</h2>
+            <h2 class="section-title">Outfit Suggestions</h2>
             <div class="items-grid">
                 <div class="item-card">
-                    <div class="item-image">
-                        <div>Casual Weekend<br>Outfit Preview</div>
+                    <div class="item-image-container">
+                        <div class="item-placeholder">Casual Weekend<br>Outfit Preview</div>
                     </div>
                     <div class="item-info">
                         <div class="item-name">Casual Weekend</div>
@@ -481,8 +394,8 @@
                 </div>
                 
                 <div class="item-card">
-                    <div class="item-image">
-                        <div>Office Meeting<br>Outfit Preview</div>
+                    <div class="item-image-container">
+                        <div class="item-placeholder">Office Meeting<br>Outfit Preview</div>
                     </div>
                     <div class="item-info">
                         <div class="item-name">Office Meeting</div>
@@ -531,24 +444,139 @@
                 <option value="Tops">Tops</option>
                 <option value="Bottoms">Bottoms</option>
                 <option value="Jackets">Jackets</option>
-                <option value="Dresses">Dresses</option>
                 <option value="Shoes">Shoes</option>
                 <option value="Accessories">Accessories</option>
             </select>
         </div>
         <div class="form-group">
             <label for="item-image">Upload Image</label>
-            <input type="file" id="item-image" accept="image/*" capture="camera">
-            <button class="camera-btn"><i class="fas fa-camera"></i> Take Photo</button>
+            <input type="file" id="item-image" accept="image/*">
             <div class="image-preview">
                 <div class="no-image-text">Image preview will appear here</div>
                 <img id="preview-img" src="" alt="Preview">
             </div>
         </div>
-        <div class="form-group">
-            <label for="item-description">Description (Optional)</label>
-            <textarea id="item-description" placeholder="Add details about color, size, brand, etc." rows="2"></textarea>
-        </div>
         <div class="form-buttons">
             <button class="form-btn cancel-btn">Cancel</button>
-            <button class="
+            <button class="form-btn submit-btn">Add Item</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const uploadBtn = document.querySelector('.upload-btn');
+            const overlay = document.querySelector('.overlay');
+            const uploadForm = document.querySelector('.upload-form');
+            const cancelBtn = document.querySelector('.cancel-btn');
+            const categories = document.querySelectorAll('.category');
+            const navItems = document.querySelectorAll('.nav-item');
+            const imageInput = document.getElementById('item-image');
+            const previewImg = document.getElementById('preview-img');
+            const noImageText = document.querySelector('.no-image-text');
+            
+            // Open upload form
+            uploadBtn.addEventListener('click', function() {
+                uploadForm.style.display = 'block';
+                overlay.style.display = 'block';
+            });
+            
+            // Close upload form
+            cancelBtn.addEventListener('click', function() {
+                uploadForm.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+            
+            // Close form when clicking outside
+            overlay.addEventListener('click', function() {
+                uploadForm.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+            
+            // Category selection
+            categories.forEach(category => {
+                category.addEventListener('click', function() {
+                    categories.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Navigation selection
+            navItems.forEach(navItem => {
+                navItem.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Image preview
+            imageInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                        previewImg.style.display = 'block';
+                        noImageText.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImg.style.display = 'none';
+                    noImageText.style.display = 'block';
+                }
+            });
+            
+            // Form submission
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.addEventListener('click', function() {
+                const itemName = document.getElementById('item-name').value;
+                const itemCategory = document.getElementById('item-category').value;
+                const itemImage = document.getElementById('item-image').files[0];
+                
+                if (!itemName || !itemCategory || !itemImage) {
+                    alert('Please fill all fields and upload an image');
+                    return;
+                }
+                
+                // Create a preview of the uploaded image
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Create new item card
+                    const itemsGrid = document.querySelector('.items-grid');
+                    const newItem = document.createElement('div');
+                    newItem.className = 'item-card';
+                    newItem.innerHTML = `
+                        <div class="item-image-container">
+                            <img class="item-image" src="${e.target.result}" alt="${itemName}" style="display: block;">
+                        </div>
+                        <div class="item-info">
+                            <div class="item-name">${itemName}</div>
+                            <div class="item-category">${itemCategory}</div>
+                        </div>
+                    `;
+                    
+                    // Add to the grid
+                    itemsGrid.prepend(newItem);
+                    
+                    // Close the form
+                    uploadForm.style.display = 'none';
+                    overlay.style.display = 'none';
+                    
+                    // Reset form
+                    document.getElementById('item-name').value = '';
+                    document.getElementById('item-category').value = '';
+                    document.getElementById('item-image').value = '';
+                    previewImg.style.display = 'none';
+                    noImageText.style.display = 'block';
+                    
+                    // Show success message
+                    alert('Item added successfully!');
+                };
+                
+                reader.readAsDataURL(itemImage);
+            });
+        });
+    </script>
+</body>
+</html>
