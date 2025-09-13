@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Upload Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .guide-container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .steps {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+        }
+        
+        .steps h2 {
+            color: #2575fc;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2575fc;
+        }
+        
+        .step {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: #6a11cb;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .step-content p {
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .code-area {
+            background: #2c3e50;
+            border-radius: 10px;
+            padding: 25px;
+            color: white;
+        }
+        
+        .code-area h2 {
+            color: #1dd1a1;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1dd1a1;
+        }
+        
+        .code-block {
+            background: #1e2a38;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+        
+        .code-block code {
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #dfe6e9;
+        }
+        
+        .code-comment {
+            color: #7f8c8d;
+        }
+        
+        .code-keyword {
+            color: #e74c3c;
+        }
+        
+        .code-string {
+            color: #f1c40f;
+        }
+        
+        .code-function {
+            color: #3498db;
+        }
+        
+        .tip-box {
+            background: rgba(29, 209, 161, 0.1);
+            border-left: 4px solid #1dd1a1;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        
+        .tip-box h4 {
+            color: #1dd1a1;
+            margin-bottom: 8px;
+        }
+        
+        .footer {
+            background: #f5f7fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="guide-container">
+        <div class="header">
+            <h1>GitHub Code Upload Guide</h1>
+            <p>How to upload your code directly to GitHub through the browser</p>
+        </div>
+        
+        <div class="content">
+            <div class="steps">
+                <h2>Step-by-Step Instructions</h2>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Sign in to GitHub</h3>
+                        <p>Go to <a href="https://github.com" target="_blank">github.com</a> and sign in to your account. If you don't have an account, create one first.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Create a New Repository</h3>
+                        <p>Click on the "+" icon in the top right corner and select "New repository". Give your repository a name and description.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Initialize with README</h3>
+                        <p>Select "Initialize this repository with a README" to create an initial file. This makes it easier to add more files later.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Open Your Repository</h3>
+                        <p>Click on the repository name to open it. You'll see the README.md file you just created.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Add New Files</h3>
+                        <p>Click the "Add file" button and select "Create new file". Enter the filename with the proper extension (e.g., index.html).</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Paste Your Code</h3>
+                        <p>Copy your HTML/CSS/JS code and paste it into the editor. Add a descriptive commit message at the bottom.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h3>Commit Changes</h3>
+                        <p>Click the "Commit new file" button to save your file to the repository.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <h3>Enable GitHub Pages</h3>
+                        <p>Go to Settings → Pages → Select "main" branch as source → Save. Your site will be published at username.github.io/repository-name</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-area">
+                <h2>Example HTML File</h2>
+                
+                <div class="code-block">
+                    <code>
+                        <span class="code-comment">&lt;!-- Example HTML file to upload --&gt;</span><br>
+                        <span class="code-keyword">&lt;!DOCTYPE</span> html<span class="code-keyword">&gt;</span><br>
+                        <span class="code-keyword">&lt;html</span> <span class="code-function">lang</span>=<span class="code-string">"en"</span><span class="code-keyword">&gt;</span><br>
+                        <span class="code-keyword">&lt;head&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">&lt;meta</span> <span class="code-function">charset</span>=<span class="code-string">"UTF-8"</span><span class="code-keyword">&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">&lt;meta</span> <span class="code-function">name</span>=<span class="code-string">"viewport"</span> <span class="code-function">content</span>=<span class="code-string">"width=device-width, initial-scale=1.0"</span><span class="code-keyword">&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">&lt;title&gt;</span>My Fashion App<span class="code-keyword">&lt;/title&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">&lt;style&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">/* Your CSS code here */</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">&lt;/style&gt;</span><br>
+                        <span class="code-keyword">&lt;/head&gt;</span><br>
+                        <span class="code-keyword">&lt;body&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">&lt;div</span> <span class="code-function">class</span>=<span class="code-string">"container"</span><span class="code-keyword">&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">&lt;!-- Your app content --&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">&lt;/div&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">&lt;script&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// Your JavaScript code here</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">&lt;/script&gt;</span><br>
+                        <span class="code-keyword">&lt;/body&gt;</span><br>
+                        <span class="code-keyword">&lt;/html&gt;</span>
+                    </code>
+                </div>
+                
+                <div class="tip-box">
+                    <h4>Pro Tip</h4>
+                    <p>Name your main HTML file "index.html" to make it the default page that loads when someone visits your GitHub Pages site.</p>
+                </div>
+                
+                <div class="tip-box">
+                    <h4>GitHub Pages URL</h4>
+                    <p>Your published website will be available at:<br>
+                    https://<strong>your-username</strong>.github.io/<strong>repository-name</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>You can now upload your fashion app code by following these steps directly on GitHub!</p>
+        </div>
+    </div>
+</body>
+</html>
