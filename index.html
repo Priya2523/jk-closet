@@ -3,294 +3,568 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Upload Guide</title>
+    <title>JK Closet Circle</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
             color: #333;
             min-height: 100vh;
-            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         
-        .guide-container {
+        .app-container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 400px;
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .header {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
+            position: relative;
         }
         
         .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
         
-        .header p {
-            font-size: 18px;
-            opacity: 0.9;
+        .search-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 10px 15px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: white;
+            width: 100%;
+            padding: 5px;
+            outline: none;
+        }
+        
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .search-bar i {
+            margin-right: 10px;
+        }
+        
+        .categories {
+            display: flex;
+            overflow-x: auto;
+            padding: 15px 20px;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .category {
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-right: 10px;
+            white-space: nowrap;
+            cursor: pointer;
+            background: #f5f7fa;
+            transition: all 0.3s ease;
+        }
+        
+        .category.active {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
         }
         
         .content {
-            padding: 30px;
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2d3436;
+        }
+        
+        .items-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        
-        .steps {
-            background: #f9f9f9;
-            border-radius: 10px;
-            padding: 25px;
-        }
-        
-        .steps h2 {
-            color: #2575fc;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #2575fc;
         }
         
-        .step {
-            margin-bottom: 25px;
+        .item-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .item-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            background-color: #f0f4ff;
             display: flex;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
+            color: #6a11cb;
+            font-size: 12px;
+            text-align: center;
         }
         
-        .step-number {
-            background: #6a11cb;
-            color: white;
-            width: 30px;
-            height: 30px;
+        .item-info {
+            padding: 10px;
+        }
+        
+        .item-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .item-category {
+            font-size: 12px;
+            color: #636e72;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #636e72;
+            text-decoration: none;
+        }
+        
+        .nav-item.active {
+            color: #6a11cb;
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .nav-text {
+            font-size: 12px;
+        }
+        
+        .upload-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right: 15px;
-            flex-shrink: 0;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(106, 17, 203, 0.3);
+            cursor: pointer;
+            z-index: 100;
         }
         
-        .step-content h3 {
-            margin-bottom: 8px;
-            color: #333;
+        .upload-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            width: 90%;
+            max-width: 400px;
         }
         
-        .step-content p {
-            color: #666;
-            line-height: 1.5;
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2d3436;
         }
         
-        .code-area {
-            background: #2c3e50;
-            border-radius: 10px;
-            padding: 25px;
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .form-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
         }
         
-        .code-area h2 {
-            color: #1dd1a1;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #1dd1a1;
-        }
-        
-        .code-block {
-            background: #1e2a38;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            overflow-x: auto;
-        }
-        
-        .code-block code {
-            font-family: 'Fira Code', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            color: #dfe6e9;
-        }
-        
-        .code-comment {
-            color: #7f8c8d;
-        }
-        
-        .code-keyword {
-            color: #e74c3c;
-        }
-        
-        .code-string {
-            color: #f1c40f;
-        }
-        
-        .code-function {
-            color: #3498db;
-        }
-        
-        .tip-box {
-            background: rgba(29, 209, 161, 0.1);
-            border-left: 4px solid #1dd1a1;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 4px;
-        }
-        
-        .tip-box h4 {
-            color: #1dd1a1;
-            margin-bottom: 8px;
-        }
-        
-        .footer {
+        .cancel-btn {
             background: #f5f7fa;
-            padding: 20px;
-            text-align: center;
-            color: #666;
-            border-top: 1px solid #eee;
+            color: #636e72;
         }
         
-        @media (max-width: 768px) {
-            .content {
-                grid-template-columns: 1fr;
-            }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 150px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+        }
+
+        .no-image-text {
+            color: #999;
+            text-align: center;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="guide-container">
+    <div class="app-container">
         <div class="header">
-            <h1>GitHub Code Upload Guide</h1>
-            <p>How to upload your code directly to GitHub through the browser</p>
+            <h1>JK-Closet-Circle</h1>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search your wardrobe...">
+            </div>
+        </div>
+        
+        <div class="categories">
+            <div class="category active">All</div>
+            <div class="category">Tops</div>
+            <div class="category">Bottoms</div>
+            <div class="category">Jackets</div>
+            <div class="category">Shoes</div>
+            <div class="category">Accessories</div>
         </div>
         
         <div class="content">
-            <div class="steps">
-                <h2>Step-by-Step Instructions</h2>
-                
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Sign in to GitHub</h3>
-                        <p>Go to <a href="https://github.com" target="_blank">github.com</a> and sign in to your account. If you don't have an account, create one first.</p>
+            <h2 class="section-title">My Wardrobe</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <div class="item-image">
+                        <div>Blue Denim Jacket<br>Image Preview</div>
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">Blue Denim Jacket</div>
+                        <div class="item-category">Jackets</div>
                     </div>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Create a New Repository</h3>
-                        <p>Click on the "+" icon in the top right corner and select "New repository". Give your repository a name and description.</p>
+                <div class="item-card">
+                    <div class="item-image">
+                        <div>White Cotton T-shirt<br>Image Preview</div>
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">White Cotton T-shirt</div>
+                        <div class="item-category">Tops</div>
                     </div>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Initialize with README</h3>
-                        <p>Select "Initialize this repository with a README" to create an initial file. This makes it easier to add more files later.</p>
+                <div class="item-card">
+                    <div class="item-image">
+                        <div>Black Formal Pants<br>Image Preview</div>
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">Black Formal Pants</div>
+                        <div class="item-category">Bottoms</div>
                     </div>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Open Your Repository</h3>
-                        <p>Click on the repository name to open it. You'll see the README.md file you just created.</p>
+                <div class="item-card">
+                    <div class="item-image">
+                        <div>Pink Summer Dress<br>Image Preview</div>
                     </div>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Add New Files</h3>
-                        <p>Click the "Add file" button and select "Create new file". Enter the filename with the proper extension (e.g., index.html).</p>
-                    </div>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">6</div>
-                    <div class="step-content">
-                        <h3>Paste Your Code</h3>
-                        <p>Copy your HTML/CSS/JS code and paste it into the editor. Add a descriptive commit message at the bottom.</p>
-                    </div>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">7</div>
-                    <div class="step-content">
-                        <h3>Commit Changes</h3>
-                        <p>Click the "Commit new file" button to save your file to the repository.</p>
-                    </div>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">8</div>
-                    <div class="step-content">
-                        <h3>Enable GitHub Pages</h3>
-                        <p>Go to Settings → Pages → Select "main" branch as source → Save. Your site will be published at username.github.io/repository-name</p>
+                    <div class="item-info">
+                        <div class="item-name">Pink Summer Dress</div>
+                        <div class="item-category">Dresses</div>
                     </div>
                 </div>
             </div>
             
-            <div class="code-area">
-                <h2>Example HTML File</h2>
-                
-                <div class="code-block">
-                    <code>
-                        <span class="code-comment">&lt;!-- Example HTML file to upload --&gt;</span><br>
-                        <span class="code-keyword">&lt;!DOCTYPE</span> html<span class="code-keyword">&gt;</span><br>
-                        <span class="code-keyword">&lt;html</span> <span class="code-function">lang</span>=<span class="code-string">"en"</span><span class="code-keyword">&gt;</span><br>
-                        <span class="code-keyword">&lt;head&gt;</span><br>
-                        &nbsp;&nbsp;<span class="code-keyword">&lt;meta</span> <span class="code-function">charset</span>=<span class="code-string">"UTF-8"</span><span class="code-keyword">&gt;</span><br>
-                        &nbsp;&nbsp;<span class="code-keyword">&lt;meta</span> <span class="code-function">name</span>=<span class="code-string">"viewport"</span> <span class="code-function">content</span>=<span class="code-string">"width=device-width, initial-scale=1.0"</span><span class="code-keyword">&gt;</span><br>
-                        &nbsp;&nbsp;<span class="code-keyword">&lt;title&gt;</span>My Fashion App<span class="code-keyword">&lt;/title&gt;</span><br>
-                        &nbsp;&nbsp;<span class="code-keyword">&lt;style&gt;</span><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">/* Your CSS code here */</span><br>
-                        &nbsp;&nbsp;<span class="code-keyword">&lt;/style&gt;</span><br>
-                        <span class="code-keyword">&lt;/head&gt;</span><br>
-                        <span class="code-keyword">&lt;body&gt;</span><br>
-                        &nbsp;&nbsp;<span class="code-keyword">&lt;div</span> <span class="code-function">class</span>=<span class="code-string">"container"</span><span class="code-keyword">&gt;</span><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">&lt;!-- Your app content --&gt;</span><br>
-                        &nbsp;&nbsp;<span class="code-keyword">&lt;/div&gt;</span><br>
-                        &nbsp;&nbsp;<span class="code-keyword">&lt;script&gt;</span><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// Your JavaScript code here</span><br>
-                        &nbsp;&nbsp;<span class="code-keyword">&lt;/script&gt;</span><br>
-                        <span class="code-keyword">&lt;/body&gt;</span><br>
-                        <span class="code-keyword">&lt;/html&gt;</span>
-                    </code>
+            <h2 class="section-title">Outfit Suggestions</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <div class="item-image">
+                        <div>Casual Weekend<br>Outfit Preview</div>
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">Casual Weekend</div>
+                        <div class="item-category">Outfit</div>
+                    </div>
                 </div>
                 
-                <div class="tip-box">
-                    <h4>Pro Tip</h4>
-                    <p>Name your main HTML file "index.html" to make it the default page that loads when someone visits your GitHub Pages site.</p>
-                </div>
-                
-                <div class="tip-box">
-                    <h4>GitHub Pages URL</h4>
-                    <p>Your published website will be available at:<br>
-                    https://<strong>your-username</strong>.github.io/<strong>repository-name</strong></p>
+                <div class="item-card">
+                    <div class="item-image">
+                        <div>Office Meeting<br>Outfit Preview</div>
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">Office Meeting</div>
+                        <div class="item-category">Outfit</div>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="footer">
-            <p>You can now upload your fashion app code by following these steps directly on GitHub!</p>
+        <div class="navigation">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-tshirt nav-icon"></i>
+                <span class="nav-text">Closet</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-vest nav-icon"></i>
+                <span class="nav-text">Outfits</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-chart-line nav-icon"></i>
+                <span class="nav-text">Stats</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user nav-icon"></i>
+                <span class="nav-text">Profile</span>
+            </a>
         </div>
     </div>
+    
+    <div class="upload-btn">
+        <i class="fas fa-plus"></i>
+    </div>
+    
+    <div class="overlay"></div>
+    
+    <div class="upload-form">
+        <h2 class="form-title">Add New Item</h2>
+        <div class="form-group">
+            <label for="item-name">Item Name</label>
+            <input type="text" id="item-name" placeholder="e.g., Blue Denim Jacket">
+        </div>
+        <div class="form-group">
+            <label for="item-category">Category</label>
+            <select id="item-category">
+                <option value="">Select Category</option>
+                <option value="Tops">Tops</option>
+                <option value="Bottoms">Bottoms</option>
+                <option value="Jackets">Jackets</option>
+                <option value="Shoes">Shoes</option>
+                <option value="Accessories">Accessories</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="item-image">Upload Image</label>
+            <input type="file" id="item-image" accept="image/*">
+            <div class="image-preview">
+                <div class="no-image-text">Image preview will appear here</div>
+                <img id="preview-img" src="" alt="Preview">
+            </div>
+        </div>
+        <div class="form-buttons">
+            <button class="form-btn cancel-btn">Cancel</button>
+            <button class="form-btn submit-btn">Add Item</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const uploadBtn = document.querySelector('.upload-btn');
+            const overlay = document.querySelector('.overlay');
+            const uploadForm = document.querySelector('.upload-form');
+            const cancelBtn = document.querySelector('.cancel-btn');
+            const categories = document.querySelectorAll('.category');
+            const navItems = document.querySelectorAll('.nav-item');
+            const imageInput = document.getElementById('item-image');
+            const previewImg = document.getElementById('preview-img');
+            const noImageText = document.querySelector('.no-image-text');
+            
+            // Open upload form
+            uploadBtn.addEventListener('click', function() {
+                uploadForm.style.display = 'block';
+                overlay.style.display = 'block';
+            });
+            
+            // Close upload form
+            cancelBtn.addEventListener('click', function() {
+                uploadForm.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+            
+            // Close form when clicking outside
+            overlay.addEventListener('click', function() {
+                uploadForm.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+            
+            // Category selection
+            categories.forEach(category => {
+                category.addEventListener('click', function() {
+                    categories.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Navigation selection
+            navItems.forEach(navItem => {
+                navItem.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Image preview
+            imageInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                        previewImg.style.display = 'block';
+                        noImageText.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImg.style.display = 'none';
+                    noImageText.style.display = 'block';
+                }
+            });
+            
+            // Form submission
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.addEventListener('click', function() {
+                const itemName = document.getElementById('item-name').value;
+                const itemCategory = document.getElementById('item-category').value;
+                const itemImage = document.getElementById('item-image').files[0];
+                
+                if (!itemName || !itemCategory || !itemImage) {
+                    alert('Please fill all fields and upload an image');
+                    return;
+                }
+                
+                // Create a preview of the uploaded image
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Create new item card
+                    const itemsGrid = document.querySelector('.items-grid');
+                    const newItem = document.createElement('div');
+                    newItem.className = 'item-card';
+                    newItem.innerHTML = `
+                        <div class="item-image">
+                            <img src="${e.target.result}" alt="${itemName}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="item-info">
+                            <div class="item-name">${itemName}</div>
+                            <div class="item-category">${itemCategory}</div>
+                        </div>
+                    `;
+                    
+                    // Add to the grid
+                    itemsGrid.prepend(newItem);
+                    
+                    // Close the form
+                    uploadForm.style.display = 'none';
+                    overlay.style.display = 'none';
+                    
+                    // Reset form
+                    document.getElementById('item-name').value = '';
+                    document.getElementById('item-category').value = '';
+                    document.getElementById('item-image').value = '';
+                    previewImg.style.display = 'none';
+                    noImageText.style.display = 'block';
+                    
+                    // Show success message
+                    alert('Item added successfully!');
+                };
+                
+                reader.readAsDataURL(itemImage);
+            });
+        });
+    </script>
 </body>
 </html>
